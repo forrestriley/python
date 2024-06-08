@@ -12,7 +12,7 @@ def roll():
 # value = roll()
 # print(value)
 
-# while True asks for input again if non valid value is entere5
+# while True asks for input again if non valid value is entered
 while True:
   players = input("Enter the number of players (2-4): ")
   if players.isdigit():
