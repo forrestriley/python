@@ -20,8 +20,32 @@ while successful_login == False:
     #check for valid email
     email = email.strip()#strips whitespace around input
 
-    email_split = email.split("@")
-    email_test_one = 
+    if email.find("@") > -1: #checks for  @ if found, execute
+        email_split = email.split("@")#splits input at the @
+        email_test_one = email_split[0].isalnum()#checks username for alphanumeric content and saves it to variable
+
+        if email_test_one == True: #if test 1 is true execute
+            email_test_two = email_split[1].find(".")
+
+            if email_test_two == -4:
+                email_test_three_variable = email_split[1].isalnum()
+                email_test_three = 
+
+            else:#if test one is false execute
+                print("No period detected before the three letter domain")#print error message
+                break#breaks loop
+
+
+        else:#if test one is false execute
+            print("Invalid username for email")#print error message
+            break#breaks loop
+
+
+    else: #if no @ is found execute
+        print("No @ found in the email, please try again.") #prints message for missing @
+        break #breaks loop
+
+
     #print prompt stating password requirements
 
     #get input from user
