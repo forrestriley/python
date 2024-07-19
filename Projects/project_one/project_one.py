@@ -1,3 +1,6 @@
+#imports
+import re #imports regex
+
 #initialize variables
 
 email = ""
@@ -6,6 +9,7 @@ global successful_login
 successful_login = False
 global email_check 
 global password_check
+password_regex = r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!?@#$^&*_-])$"
 # while loop checking for a successful login
 
 while successful_login == False:
@@ -33,32 +37,45 @@ while successful_login == False:
 
             if email_test_two != -1: #if find is able to locate a '.' in the correct area
                     email_check = True #sets email check to true
-                    print("A valid password is alphanumeric and my contain special characters") #tells the password rules
+                    print("A valid password is must be at least 8 characters long with no spaces, contain at least one uppercase letter, one lowercase letter, one number, and at least one of the following: !, ?, @, #, $, ^, &, _, -") #tells the password rules
                     password = input("Enter your password ") #gets user input for password
-                    password_test = password.isascii() #checks for numbers, letters, special characters
+                    '''
+                    password_test = password.isascii() #checks for numbers, letters, special characters -- Below works with this check
 
                     if password_test == True: #if password contains valid input
                         print("The email and password are valid, login to finish account creation") #prints that the password is valid
                         password_check = True #sets password check to true
+                    '''
+                    if len(password) >= 8: #checks for password length being 8 or more
+                         
+                        pass_test_one = password.find(" ")
 
-                        if email_check == True and password_check == True: #if email and password checks are ture
-                            print("Enter your email") #asks for email
-                            email_login = input() # gets input from user
-                            if email == email_login: #if entered email is the same as saved email
-                                print("Enter your password") #asks for password
-                                password_login = input() #gets user input 
-                                if password == password_login:
-                                    print("Account successfully created, and you have been logged in") #prints confirmation message, and login message
-                                    break #breaks while loop
+                        if pass_test_one == -1:
+                            pass_test_two = 
 
-                                else:#if password != the previous password
-                                    print("Incorrect password, please try creating an account again")#print error message
+                        else:
+                            print("Invalid password, spaces were detected")
+                    else: #if the password is too short
+                        length = len(password) #sets length to pass length
+                        print(f"The password was not long enough, it was only {length} characters long") #prints out error, and length of entered password
+                        # if email_check == True and password_check == True: #if email and password checks are ture
+                        #     print("Enter your email") #asks for email
+                        #     email_login = input() # gets input from user
+                        #     if email == email_login: #if entered email is the same as saved email
+                        #         print("Enter your password") #asks for password
+                        #         password_login = input() #gets user input 
+                        #         if password == password_login:
+                        #             print("Account successfully created, and you have been logged in") #prints confirmation message, and login message
+                        #             break #breaks while loop
+
+                        #         else:#if password != the previous password
+                        #             print("Incorrect password, please try creating an account again")#print error message
                                     
-                            else:#if email =! the previous email
-                                print("Incorrect email, please try creating an account again")#print error message
+                        #     else:#if email =! the previous email
+                        #         print("Incorrect email, please try creating an account again")#print error message
                                 
-                        else:#if ascii check is false
-                            print("Invalid password")#print error message
+                        # else:#if ascii check is false
+                        #     print("Invalid password")#print error message
                             
             else:#if '.' is not detected in range
                 print("No period detected before the domain")#print error message
